@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 该文件存放CRUD的sql语句 -->
+<mapper namespace="com.darling.user.mapper.UserMapper">
+	
+	<select id="findByName" parameterType="String" resultType="com.darling.user.domain.User">
+		SELECT uuid,NAME,pwd,age,sex,address
+		FROM m_user
+		<where>
+			<if test="name != '' and name != null">
+				and name =  #{name}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findById" parameterType="int" resultType="com.darling.user.domain.User">
+		SELECT 	uuid,
+		NAME, 
+		pwd
+		FROM
+		m_user
+		<where>
+			<if test="id != '' and id != null">
+				and id =  #{id}
+			</if>
+		</where>
+	</select>
+</mapper>
